@@ -23,6 +23,9 @@ public class Face : MonoBehaviour
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
     }
 
-
+    public void MoveTo(Vector2 newPosition)
+    {
+        transform.position = newPosition;
+    }
 
 }

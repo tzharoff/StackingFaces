@@ -558,9 +558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cdaeb05897d4efea6ca3fb7596b91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _facePrefab: {fileID: 7468112009275403382, guid: d8c2a95ca13c04f2892f94b20a788762, type: 3}
+  _facePrefab: {fileID: 3773383547803470621, guid: d8c2a95ca13c04f2892f94b20a788762, type: 3}
   _spawnPosY: {fileID: 1499740960}
   _lineRenderer: {fileID: 2727528}
+  delayBetweenSpawns: 0.5
 --- !u!1001 &1632892745
 PrefabInstance:
   m_ObjectHideFlags: 0

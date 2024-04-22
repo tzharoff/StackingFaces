@@ -10,20 +10,24 @@ public class FaceManager : MonoBehaviour
     [SerializeField] private Transform _spawnPosY;
     [SerializeField] private LineRenderer _lineRenderer;
 
-    private Camera camera;
+    [Header("Settings")]
+    [SerializeField] float delayBetweenSpawns;
+
+    private new Camera camera;
     private float _spawnPosX;
 
     private Vector2 lastTouchedPosition = new Vector2(0, 0);
 
     private Face currentFace;
+    private bool canControl;
+    private bool isControlling;
 
+    #region listen to events
     private void Awake()
     {
-        camera = Camera.main;
         TouchManager.TouchStart += TouchStartedCallback;
         TouchManager.TouchStop += TouchStoppedCallback;
         TouchManager.TouchPosition += TouchPositionCallback;
-        HideLine();
     }
 
 
@@ -33,40 +37,89 @@ public class FaceManager : MonoBehaviour
         TouchManager.TouchStop -= TouchStoppedCallback;
         TouchManager.TouchPosition -= TouchPositionCallback;
     }
+    #endregion
 
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        HideLine();
+        camera = Camera.main;
+        canControl = true;
+        isControlling = false;
+    }
+
+    #region line renderer
+    //show line render
     private void ShowLine()
     {
         _lineRenderer.gameObject.SetActive(true);
         SetLinePosition();
     }
-
+    //give the line render two position points
     private void SetLinePosition()
     {
         _lineRenderer.SetPosition(0, SpawnPosition);
         _lineRenderer.SetPosition(1, SpawnPosition + Vector2.down * 15);
     }
-
+    //hide line render
     private void HideLine()
     {
         _lineRenderer.gameObject.SetActive(false);
     }
+    #endregion
 
+    #region touch input
+    //touch down
     private void TouchStartedCallback()
     {
+        if (!canControl)
+            return;
+
+        isControlling = true;
+
         ShowLine();
         SpawnFace();
     }
 
+    //touch moving
     private void TouchPositionCallback(Vector2 touchPos)
     {
+        if(currentFace == null)
+            return;
+
+        if (!isControlling)
+        {
+            TouchStoppedCallback();
+            return;
+        }
+
         lastTouchedPosition = touchPos;
+        currentFace.MoveTo(SpawnPosition);
         SetLinePosition();
     }
 
+    //touch up
     private void TouchStoppedCallback()
     {
+        if (currentFace == null)
+            return;
+
         HideLine();
         currentFace.SetBodyToDynamic();
+        canControl = false;
+        StartCoroutine(controlTimer(delayBetweenSpawns));
+        isControlling = false;
+    }
+    #endregion
+
+    private IEnumerator controlTimer(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        canControl = true;
     }
 
     private void SpawnFace()
