@@ -6,7 +6,7 @@ using UnityEngine;
 public class FaceManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject _facePrefab;
+    [SerializeField] private Face _facePrefab;
     [SerializeField] private Transform _spawnPosY;
     [SerializeField] private LineRenderer _lineRenderer;
 
@@ -14,6 +14,8 @@ public class FaceManager : MonoBehaviour
     private float _spawnPosX;
 
     private Vector2 lastTouchedPosition = new Vector2(0, 0);
+
+    private Face currentFace;
 
     private void Awake()
     {
@@ -52,6 +54,7 @@ public class FaceManager : MonoBehaviour
     private void TouchStartedCallback()
     {
         ShowLine();
+        SpawnFace();
     }
 
     private void TouchPositionCallback(Vector2 touchPos)
@@ -62,8 +65,13 @@ public class FaceManager : MonoBehaviour
 
     private void TouchStoppedCallback()
     {
-        Instantiate(_facePrefab, SpawnPosition, Quaternion.identity);
         HideLine();
+        currentFace.SetBodyToDynamic();
+    }
+
+    private void SpawnFace()
+    {
+        currentFace = Instantiate(_facePrefab, SpawnPosition, Quaternion.identity);
     }
 
     public Vector2 SpawnPosition
