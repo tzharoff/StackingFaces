@@ -6,7 +6,7 @@ using UnityEngine;
 public class FaceManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Face _facePrefab;
+    [SerializeField] private Face[] _facePrefabs;
     [SerializeField] private Transform _spawnPosY;
     [SerializeField] private LineRenderer _lineRenderer;
 
@@ -28,6 +28,7 @@ public class FaceManager : MonoBehaviour
         TouchManager.TouchStart += TouchStartedCallback;
         TouchManager.TouchStop += TouchStoppedCallback;
         TouchManager.TouchPosition += TouchPositionCallback;
+        MergeManager.onMergeProcessed += MergeProcessedCallback;
     }
 
 
@@ -36,6 +37,7 @@ public class FaceManager : MonoBehaviour
         TouchManager.TouchStart -= TouchStartedCallback;
         TouchManager.TouchStop -= TouchStoppedCallback;
         TouchManager.TouchPosition -= TouchPositionCallback;
+        MergeManager.onMergeProcessed -= MergeProcessedCallback;
     }
     #endregion
 
@@ -116,6 +118,11 @@ public class FaceManager : MonoBehaviour
     }
     #endregion
 
+
+    private void MergeProcessedCallback(FaceType faceType, Vector2 spawnPos){
+        
+    }
+
     private IEnumerator controlTimer(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -124,7 +131,13 @@ public class FaceManager : MonoBehaviour
 
     private void SpawnFace()
     {
-        currentFace = Instantiate(_facePrefab, SpawnPosition, Quaternion.identity);
+        currentFace = Instantiate(GetFace, SpawnPosition, Quaternion.identity);
+    }
+
+    private Face GetFace{
+        get{
+            return _facePrefabs[UnityEngine.Random.Range(0,_facePrefabs.Length - 1)];
+        }
     }
 
     public Vector2 SpawnPosition
