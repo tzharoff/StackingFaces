@@ -13,7 +13,8 @@ public class FaceManager : MonoBehaviour
     [SerializeField] private LineRenderer _lineRenderer;
 
     [Header("Settings")]
-    [SerializeField] float delayBetweenSpawns;
+    [SerializeField] private float delayBetweenSpawns;
+    [SerializeField] private float spawnDelay; 
 
     private new Camera camera;
     private float _spawnPosX;
@@ -97,7 +98,7 @@ public class FaceManager : MonoBehaviour
 
         if (!isControlling)
         {
-            TouchStoppedCallback();
+            //TouchStoppedCallback();
             return;
         }
 
@@ -115,7 +116,7 @@ public class FaceManager : MonoBehaviour
         HideLine();
         currentFace.SetBodyToDynamic();
         canControl = false;
-        StartCoroutine(controlTimer(delayBetweenSpawns));
+        StartControlTimer();
         isControlling = false;
     }
     #endregion
@@ -130,6 +131,16 @@ public class FaceManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void StartControlTimer()
+    {
+        Invoke(nameof(StopControlTimer), spawnDelay);
+    }
+
+    private void StopControlTimer()
+    {
+        canControl = true;
     }
 
     private IEnumerator controlTimer(float delay)
