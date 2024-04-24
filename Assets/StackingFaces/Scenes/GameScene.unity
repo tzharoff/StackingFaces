@@ -619,6 +619,14 @@ MonoBehaviour:
   - {fileID: 3773383547803470621, guid: df1ba32a96e0d4faca064aa7950105dc, type: 3}
   - {fileID: 3773383547803470621, guid: e44abe9e9ecc343a48b6bd2313dcf7b7, type: 3}
   - {fileID: 3773383547803470621, guid: 0e9a52ff6b6f942b881d5314df2e5c52, type: 3}
+  _facePlayable:
+  - {fileID: 3773383547803470621, guid: c0a4de71f86b94bdc85fb2b611d27af1, type: 3}
+  - {fileID: 3773383547803470621, guid: 9ca81fe88bc7744d29ba2fb27a8c5cdf, type: 3}
+  - {fileID: 3773383547803470621, guid: c509b31a225e94085b5c56446f4430bd, type: 3}
+  - {fileID: 3773383547803470621, guid: e25c3a172377340288fde2a60fc94efa, type: 3}
+  - {fileID: 3773383547803470621, guid: e44abe9e9ecc343a48b6bd2313dcf7b7, type: 3}
+  - {fileID: 3773383547803470621, guid: 5ec21400b88d746a5926b3fd909d84a3, type: 3}
+  facesParent: {fileID: 1905339230}
   _spawnPosY: {fileID: 1499740960}
   _lineRenderer: {fileID: 2727528}
   delayBetweenSpawns: 0.5
@@ -795,8 +803,40 @@ Transform:
   m_LocalPosition: {x: -2.37, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1905339230}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1905339229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905339230}
+  m_Layer: 0
+  m_Name: FacesParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905339230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905339229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1827625791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2048840058 stripped
 Transform:

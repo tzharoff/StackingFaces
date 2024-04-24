@@ -6,7 +6,7 @@ using UnityEngine;
         Merges
         1 -> 2
         3 -> 4 -> 5
-        ConfusedDisgust -> Shock -> ConfusedAwe
+        ConfusedDisgust -> Shocked -> ConfusedAwe
         Wink -> Hmmm -> SmileContent
         Disbelief -> DisappoinmentFrown -> XEyes
     */

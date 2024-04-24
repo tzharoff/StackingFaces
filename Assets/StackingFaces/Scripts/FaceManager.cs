@@ -7,6 +7,8 @@ public class FaceManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Face[] _facePrefabs;
+    [SerializeField] private Face[] _facePlayable;
+    [SerializeField] private Transform facesParent;
     [SerializeField] private Transform _spawnPosY;
     [SerializeField] private LineRenderer _lineRenderer;
 
@@ -120,7 +122,14 @@ public class FaceManager : MonoBehaviour
 
 
     private void MergeProcessedCallback(FaceType faceType, Vector2 spawnPos){
-        
+        for(int i = 0; i < _facePrefabs.Length - 1; i++){
+            if(_facePrefabs[i].MyFaceType == faceType){
+                SpawnFace(_facePrefabs[i]);
+                currentFace.transform.position = spawnPos;
+                currentFace.SetBodyToDynamic();
+                break;
+            }
+        }
     }
 
     private IEnumerator controlTimer(float delay)
@@ -129,14 +138,20 @@ public class FaceManager : MonoBehaviour
         canControl = true;
     }
 
+
+    private void SpawnFace(Face face){
+        currentFace = Instantiate(face, SpawnPosition, Quaternion.identity, facesParent);
+    }
+
     private void SpawnFace()
     {
-        currentFace = Instantiate(GetFace, SpawnPosition, Quaternion.identity);
+        SpawnFace(GetFace);
+        //currentFace = Instantiate(GetFace, SpawnPosition, Quaternion.identity);
     }
 
     private Face GetFace{
         get{
-            return _facePrefabs[UnityEngine.Random.Range(0,_facePrefabs.Length - 1)];
+            return _facePrefabs[UnityEngine.Random.Range(0,_facePlayable.Length - 1)];
         }
     }
 
