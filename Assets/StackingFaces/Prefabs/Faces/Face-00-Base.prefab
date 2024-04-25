@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d24fa1a100d3427f93a3f42ccfa0bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myFaceType: 0
+  faceSprite: {fileID: 0}
 --- !u!1 &7687059353641669229
 GameObject:
   m_ObjectHideFlags: 0

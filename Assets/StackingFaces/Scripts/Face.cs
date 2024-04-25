@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Face : MonoBehaviour
 {
-    [SerializeField] private FaceType myFaceType;
-
     public static Action<Face, Face> onFaceCollisionCallback;
+
+    [SerializeField] private FaceType myFaceType;
+    [SerializeField] private Sprite faceSprite;
+
     private Rigidbody2D _rigidbody2D;
 
     private void Awake()
@@ -48,6 +51,20 @@ public class Face : MonoBehaviour
 
     public FaceType MyFaceType{
         get { return myFaceType; }
+    }
+
+    public Sprite FaceSprite
+    {
+        get
+        {
+            return faceSprite;
+        }
+    }
+
+    [Button]
+    private void GetSprite()
+    {
+        faceSprite = GetComponentInChildren<SpriteRenderer>().sprite;
     }
 
 }

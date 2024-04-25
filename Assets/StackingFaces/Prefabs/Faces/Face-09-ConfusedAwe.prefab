@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFaceType: 8
+  faceSprite: {fileID: 21300000, guid: 7003c0f569ee142fa9945134ccbacb6f, type: 3}
 --- !u!1 &7687059353641669229
 GameObject:
   m_ObjectHideFlags: 0

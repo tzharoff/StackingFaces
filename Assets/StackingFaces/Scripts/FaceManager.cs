@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class FaceManager : MonoBehaviour
 {
+    public static Action<Sprite> SetNextFaceSprite;
+
+
     [Header("References")]
     [SerializeField] private Face[] _facePrefabs;
     [SerializeField] private Face[] _facePlayable;
@@ -24,6 +27,7 @@ public class FaceManager : MonoBehaviour
     private Face currentFace;
     private bool canControl;
     private bool isControlling;
+    private int faceNextIndex;
 
     #region listen to events
     private void Awake()
@@ -46,6 +50,7 @@ public class FaceManager : MonoBehaviour
 
     private void Start()
     {
+        faceNextIndex = GetNextFaceIndex();
         Init();
     }
 
@@ -156,14 +161,21 @@ public class FaceManager : MonoBehaviour
 
     private void SpawnFace()
     {
-        SpawnFace(GetFace);
+        SpawnFace(_facePlayable[faceNextIndex]);
+        GetNextFaceIndex();
         //currentFace = Instantiate(GetFace, SpawnPosition, Quaternion.identity);
     }
 
     private Face GetFace{
         get{
-            return _facePrefabs[UnityEngine.Random.Range(0,_facePlayable.Length - 1)];
+            return _facePrefabs[faceNextIndex];
         }
+    }
+
+    private int GetNextFaceIndex(){
+        faceNextIndex = UnityEngine.Random.Range(0, _facePlayable.Length - 1);
+        SetNextFaceSprite?.Invoke(_facePlayable[faceNextIndex].FaceSprite);
+        return faceNextIndex;
     }
 
     public Vector2 SpawnPosition
