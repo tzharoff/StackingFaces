@@ -18,8 +18,14 @@ public class MergeManager : MonoBehaviour
 
     public static Action<FaceType, Vector2> onMergeProcessed;
     private Face lastSender;
+
     private void Awake() {
         Face.onFaceCollisionCallback += OnFaceCollision;
+    }
+
+    private void OnDestroy()
+    {
+        Face.onFaceCollisionCallback -= OnFaceCollision;
     }
 
     private void OnFaceCollision(Face sender, Face receiver){

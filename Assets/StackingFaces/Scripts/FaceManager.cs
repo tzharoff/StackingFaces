@@ -102,10 +102,7 @@ public class FaceManager : MonoBehaviour
             return;
 
         if (!isControlling)
-        {
-            //TouchStoppedCallback();
             return;
-        }
 
         lastTouchedPosition = touchPos;
         currentFace.MoveTo(SpawnPosition);
@@ -115,14 +112,13 @@ public class FaceManager : MonoBehaviour
     //touch up
     private void TouchStoppedCallback()
     {
-        if (currentFace == null)
-            return;
+        currentFace?.SetBodyToDynamic();
 
         HideLine();
-        currentFace.SetBodyToDynamic();
         canControl = false;
-        StartControlTimer();
         isControlling = false;
+
+        StartControlTimer();
     }
     #endregion
 
@@ -130,9 +126,7 @@ public class FaceManager : MonoBehaviour
     private void MergeProcessedCallback(FaceType faceType, Vector2 spawnPos){
         for(int i = 0; i < _facePrefabs.Length - 1; i++){
             if(_facePrefabs[i].MyFaceType == faceType){
-                SpawnFace(_facePrefabs[i]);
-                currentFace.transform.position = spawnPos;
-                currentFace.SetBodyToDynamic();
+                SpawnFace(_facePrefabs[i], spawnPos);
                 break;
             }
         }
@@ -154,6 +148,12 @@ public class FaceManager : MonoBehaviour
         canControl = true;
     }
 
+    private void SpawnFace(Face face, Vector2 spawnPos)
+    {
+        Instantiate(face, spawnPos, Quaternion.identity, facesParent).SetBodyToDynamic();
+        //currentFace.transform.position = spawnPos;
+        //currentFace.SetBodyToDynamic();
+    }
 
     private void SpawnFace(Face face){
         currentFace = Instantiate(face, SpawnPosition, Quaternion.identity, facesParent);
