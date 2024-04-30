@@ -28,3 +28,17 @@ public enum FaceType{
     DisappoinmentFrown,
     Despawn
 }
+
+public enum NumType
+{
+    Num1,
+    Num2,
+    Num3,
+    Num4,
+    Num5,
+    Num6,
+    Num7,
+    Num8,
+    Num9,
+    Num0
+}
