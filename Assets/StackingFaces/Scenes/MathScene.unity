@@ -411,7 +411,7 @@ Transform:
   m_GameObject: {fileID: 618919124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.50741, y: 0.7445056, z: -0.03500268}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -694,7 +694,7 @@ GameObject:
   - component: {fileID: 1535105394}
   - component: {fileID: 1535105393}
   - component: {fileID: 1535105392}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Main Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,6 +713,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6289044068489159251}
   - {fileID: 5340504233337340867}
   m_Father: {fileID: 618919125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1119,8 +1120,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6289044068489159251}
+  m_Children: []
   m_Father: {fileID: 5340504233337340867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &859455787081072533
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 534490075338823266}
   - component: {fileID: 6688258339391047428}
   - component: {fileID: 8050902986033074842}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Face_Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: 859455787081072533}
   - component: {fileID: 6724837940519694893}
   - component: {fileID: 4334793632351629264}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Numbers-00-Base 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1202,7 +1202,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5162221198164871010}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &4334793632351629264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,8 +1215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888a4b15b5b1f4006b70114de893a6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numValue: 0
   tmpText: {fileID: 5487744337238438387}
+  spriteRenderer: {fileID: 0}
+  _evenColor: {r: 0, g: 0, b: 1, a: 1}
+  _oddColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &5162221198164871010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,7 +1230,7 @@ GameObject:
   - component: {fileID: 6289044068489159251}
   - component: {fileID: 3321961171412957274}
   - component: {fileID: 5487744337238438387}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,8 +1246,8 @@ Transform:
   m_GameObject: {fileID: 1747912868757437178}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -442.628, y: -956.992, z: 0}
-  m_LocalScale: {x: 0.4773322, y: 0.4773322, z: 0.4773322}
+  m_LocalPosition: {x: -442.62, y: -956.96, z: 0}
+  m_LocalScale: {x: 0.67296, y: 0.67296, z: 0.67296}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 534490075338823266}
@@ -1349,14 +1351,14 @@ RectTransform:
   m_GameObject: {fileID: 5162221198164871010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 154.17271, y: 154.17271, z: 154.17271}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 534490075338823266}
+  m_Father: {fileID: 1535105391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 305.99997, y: 846}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6688258339391047428
@@ -1400,7 +1402,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0264e299e9f7b5449afd103be8cd224, type: 3}
   m_Color: {r: 1, g: 0.99672645, b: 0.69411767, a: 1}
   m_FlipX: 0
   m_FlipY: 0

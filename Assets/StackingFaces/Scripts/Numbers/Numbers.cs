@@ -16,6 +16,8 @@ public class Numbers : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Color _evenColor = Color.blue;
     [SerializeField] private Color _oddColor = Color.green;
+    [SerializeField] private int mergeCount = 0;
+
     private int _numValue;
     
     private void Awake()
@@ -63,6 +65,18 @@ public class Numbers : MonoBehaviour
     private void SetOddColor()
     {
         MyColor = _oddColor;
+    }
+
+
+    public int MergeCount
+    {
+        get { return mergeCount; }
+        set { mergeCount = value; }
+    }
+
+    public void SetScale(float scale)
+    {
+        transform.localScale *= scale;
     }
 
     public bool IsEven

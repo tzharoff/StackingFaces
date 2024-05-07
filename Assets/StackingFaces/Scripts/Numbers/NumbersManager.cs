@@ -126,9 +126,9 @@ public class NumbersManager : MonoBehaviour
     #endregion
 
 
-    private void MergeProcessedCallback(int numValue, Vector2 spawnPos)
+    private void MergeProcessedCallback(int numValue, Vector2 spawnPos, float scaleSize, int mergeCount)
     {
-        SpawnNumber(numValue, spawnPos);
+        SpawnNumber(numValue, spawnPos, scaleSize, mergeCount);
     }
 
     private void StartControlTimer()
@@ -155,6 +155,23 @@ public class NumbersManager : MonoBehaviour
 
         //currentFace.transform.position = spawnPos;
         //currentFace.SetBodyToDynamic();
+    }
+
+    private void SpawnNumber(int numValue, Vector2 spawnPos, float size)
+    {
+        Numbers newNumber = Instantiate(_numPrefab, spawnPos, Quaternion.identity, _numParent);
+        newNumber.SetBodyToDynamic();
+        newNumber.NumValue = numValue;
+        newNumber.SetScale(size);
+    }
+
+    private void SpawnNumber(int numValue, Vector2 spawnPos, float size, int mergeCount)
+    {
+        Numbers newNumber = Instantiate(_numPrefab, spawnPos, Quaternion.identity, _numParent);
+        newNumber.SetBodyToDynamic();
+        newNumber.NumValue = numValue;
+        newNumber.SetScale(size);
+        newNumber.MergeCount = mergeCount;
     }
 
     private void SpawnNumber(int numValue)

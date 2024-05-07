@@ -347,8 +347,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmpText: {fileID: 3732823651962890111}
   spriteRenderer: {fileID: 2536848983299199368}
-  _evenColor: {r: 0, g: 0, b: 1, a: 1}
-  _oddColor: {r: 0, g: 1, b: 0, a: 1}
+  _evenColor: {r: 0.44139376, g: 0.44139376, b: 0.8584906, a: 1}
+  _oddColor: {r: 0.51450694, g: 0.8867924, b: 0.51450694, a: 1}
 --- !u!1 &7687059353641669229
 GameObject:
   m_ObjectHideFlags: 0

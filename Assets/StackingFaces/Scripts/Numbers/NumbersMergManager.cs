@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NumbersMergManager : MonoBehaviour
 {
 
-    public static Action<int, Vector2> onMergeProcessed;
+    public static Action<int, Vector2, float, int> onMergeProcessed;
     private Numbers lastSender;
 
     private void Awake()
@@ -33,12 +32,19 @@ public class NumbersMergManager : MonoBehaviour
     {
         Vector2 numberSpawnPos = (sender.transform.position + receiver.transform.position) / 2;
         int newValue = sender.NumValue + receiver.NumValue;
+        float bigNumber = sender.NumValue > receiver.NumValue ? sender.NumValue : receiver.NumValue;
+        int newMergeCount = sender.MergeCount > receiver.MergeCount ? sender.MergeCount : receiver.MergeCount;
+        Debug.Log($"sender.MergeCount {sender.MergeCount}, sender.MergeCount {sender.MergeCount}");
+        newMergeCount++;
+        Debug.Log($"newMergeCount {newMergeCount}");
+        float scaleSize = (bigNumber / newValue) + (float)newMergeCount;
+
         Destroy(sender.gameObject);
         Destroy(receiver.gameObject);
 
         StartCoroutine(ResetLastSender());
 
-        onMergeProcessed?.Invoke(newValue, numberSpawnPos);
+        onMergeProcessed?.Invoke(newValue, numberSpawnPos, scaleSize, newMergeCount);
 
     }
 
